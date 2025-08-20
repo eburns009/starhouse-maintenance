@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - <%= technician %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="work-entry-page">
+    <div class="container">
+        <div class="header">
+            <h1>📝 Add Work Time</h1>
+            <p>Welcome, <strong><%= technician %></strong>!</p>
+        </div>
+
+        <nav class="main-nav">
+            <a href="/work/entry" class="nav-link active">⏰ Add Time</a>
+            <a href="/dashboard" class="nav-link">📊 Dashboard</a>
+            <a href="/auth/logout" class="nav-link logout">👤 Logout</a>
+        </nav>
+
+        <% if (success) { %>
+            <div class="alert alert-success">
+                <span class="alert-icon">✅</span>
+                <%= success %>
+            </div>
+        <% } %>
+
+        <% if (error) { %>
+            <div class="alert alert-error">
+                <span class="alert-icon">❌</span>
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form method="POST" action="/work/entry" class="work-form" id="workForm">
+            <div class="form-group">
+                <label for="date">📅 Work Date</label>
+                <input type="date" id="date" name="date" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">📍 Location</label>
+                <select id="location" name="location" class="form-input" required>
+                    <option value="">Select Location...</option>
+                    <% allowedLocations.forEach(location => { %>
+                        <option value="<%= location %>"><%= location %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="workType">🔧 Work Type</label>
+                <select id="workType" name="workType" class="form-input" required>
+                    <option value="">Select Work Type...</option>
+                    <% workTypes.forEach(workType => { %>
+                        <option value="<%= workType.name %>"><%= workType.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hours">⏱️ Hours Worked</label>
+                <input type="number" id="hours" name="hours" class="form-input" 
+                       step="0.25" min="0" max="24" placeholder="2.5" required>
+                <small class="form-help">Use decimals (e.g., 2.5 for 2 hours 30 minutes)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="description">📝 Work Description</label>
+                <textarea id="description" name="description" class="form-input" 
+                          rows="4" placeholder="Describe what work was completed..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="btn-icon">💾</span>
+                <span class="btn-text">Save Work Entry</span>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('date').valueAsDate = new Date();
+        
+        document.getElementById('workForm').addEventListener('submit', function() {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<span class="loading">⏳</span> Saving...';
+            submitBtn.disabled = true;
+        });
+    </script>
+</body>
+</html>

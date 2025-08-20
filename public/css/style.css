@@ -1,0 +1,475 @@
+/* StarHouse Maintenance App - Main Stylesheet */
+
+:root {
+  --primary-color: #667eea;
+  --primary-dark: #764ba2;
+  --secondary-color: #4285f4;
+  --success-color: #27ae60;
+  --error-color: #e74c3c;
+  --warning-color: #f39c12;
+  --text-color: #2c3e50;
+  --text-light: #7f8c8d;
+  --background-light: #f8f9fa;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Apple System', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+/* Login Page */
+.login-page .container {
+  max-width: 450px;
+  margin: 50px auto;
+}
+
+.login-header {
+  text-align: center;
+  padding: 40px 30px 30px;
+}
+
+.login-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.login-header p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.technician-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 30px;
+}
+
+.tech-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tech-button:hover {
+  background: #3367d6;
+  transform: translateY(-2px);
+}
+
+.tech-icon {
+  font-size: 1.5rem;
+}
+
+.login-footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--background-light);
+  color: var(--text-light);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 30px;
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  background: var(--background-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-link {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.nav-link.active {
+  background: white;
+  border-bottom-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.nav-link.logout {
+  color: var(--error-color);
+}
+
+/* Forms */
+.work-form {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.form-help {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-top: 5px;
+}
+
+/* Buttons */
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-btn:hover {
+  background: #229954;
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Alerts */
+.alert {
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Dashboard */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(45deg, var(--secondary-color), #3367d6);
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-card .number {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.recent-work {
+  margin: 20px 30px;
+  background: var(--background-light);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.recent-work h3 {
+  background: var(--text-color);
+  color: white;
+  padding: 20px;
+  margin: 0;
+}
+
+.work-item {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.work-date {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.work-hours {
+  background: var(--success-color);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* Admin */
+.invoice-section {
+  background: var(--background-light);
+  padding: 25px;
+  margin: 20px 30px;
+  border-radius: 10px;
+}
+
+.split-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.split-item.total {
+  border-top: 2px solid var(--secondary-color);
+  margin-top: 10px;
+  padding-top: 15px;
+  font-weight: bold;
+}
+
+.admin-actions {
+  padding: 30px;
+}
+
+/* Loading */
+.loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body { padding: 5px; }
+  .container { border-radius: 10px; }
+  .tech-button { padding: 22px; font-size: 1.1rem; }
+  .form-input { font-size: 1.1rem; padding: 16px; }
+  .submit-btn { font-size: 1.1rem; padding: 20px; }
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 10px;
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+/* Login Page */
+.login-header {
+  text-align: center;
+  padding: 40px 30px 30px;
+}
+
+.login-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.tech-button {
+  width: 100%;
+  padding: 20px;
+  margin: 15px 0;
+  font-size: 1.2rem;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.tech-button:hover {
+  background: #3367d6;
+  transform: translateY(-2px);
+}
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.tech-button:hover {
+  background: #3367d6;
+  transform: translateY(-2px);
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.2rem;
+  background: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #229954;
+}
+  background: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #229954;
+}
+
+/* Alerts */
+.alert {
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body { padding: 5px; }
+  .container { border-radius: 10px; }
+  .tech-button { padding: 22px; font-size: 1.1rem; }
+  .form-input { font-size: 1.1rem; padding: 16px; }
+  .submit-btn { font-size: 1.1rem; padding: 20px; }
+}
+
+/* Loading */
+.loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

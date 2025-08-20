@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+    <div class="container">
+        <div class="login-header">
+            <h1>⭐ StarHouse Maintenance</h1>
+            <p>Select your name to continue</p>
+        </div>
+
+        <% if (error) { %>
+            <div class="alert alert-error">
+                <span class="alert-icon">⚠️</span>
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form method="POST" action="/auth/login" class="login-form">
+            <div class="technician-buttons">
+                <% technicians.forEach(technician => { %>
+                    <button type="submit" name="technician" value="<%= technician %>" class="tech-button">
+                        <span class="tech-icon">👨‍🔧</span>
+                        <span class="tech-name"><%= technician %></span>
+                    </button>
+                <% }); %>
+            </div>
+        </form>
+
+        <div class="login-footer">
+            <p>✅ Tap your name above to start logging work time</p>
+            <div class="app-info">
+                <small>StarHouse Maintenance Tracker v1.0</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tech-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.innerHTML = '<span class="loading">⏳</span> Logging in...';
+                this.disabled = true;
+            });
+        });
+    </script>
+</body>
+</html>

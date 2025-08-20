@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - <%= technician %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dashboard-page">
+    <div class="container">
+        <div class="header">
+            <h1>📊 <%= technician %>'s Dashboard</h1>
+        </div>
+
+        <nav class="main-nav">
+            <a href="/work/entry" class="nav-link">⏰ Add Time</a>
+            <a href="/dashboard" class="nav-link active">📊 Dashboard</a>
+            <a href="/auth/logout" class="nav-link logout">👤 Logout</a>
+        </nav>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>This Month</h3>
+                <div class="number"><%= stats.monthHours %></div>
+                <p>Hours Worked</p>
+            </div>
+            <div class="stat-card">
+                <h3>This Week</h3>
+                <div class="number"><%= stats.weekHours %></div>
+                <p>Hours Worked</p>
+            </div>
+        </div>
+
+        <div class="recent-work">
+            <h3>📋 Recent Work Entries</h3>
+            <% if (recentWork && recentWork.length > 0) { %>
+                <% recentWork.forEach(work => { %>
+                    <div class="work-item">
+                        <div>
+                            <div class="work-date"><%= work.date %></div>
+                            <div><%= work.location %>: <%= work.description %></div>
+                        </div>
+                        <div class="work-hours"><%= work.hours %> hrs</div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="no-work">
+                    <p>No recent work entries found.</p>
+                    <a href="/work/entry" class="btn">Add Your First Entry</a>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="dashboard-actions">
+            <a href="/work/entry" class="action-btn primary">
+                ⏰ Add New Work Entry
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin-page">
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Admin Dashboard</h1>
+            <a href="/auth/login" class="logout-btn">← Back to Login</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Hours</h3>
+                <div class="number"><%= stats.totalHours %></div>
+                <p>This Month</p>
+            </div>
+            <div class="stat-card">
+                <h3>Roads Invoice</h3>
+                <div class="number"><%= stats.roadsInvoice %></div>
+                <p>This Month</p>
+            </div>
+            <div class="stat-card">
+                <h3>Active Techs</h3>
+                <div class="number"><%= stats.activeTechs %></div>
+                <p>This Month</p>
+            </div>
+        </div>
+
+        <div class="invoice-section">
+            <h3>🧾 Roads Invoice Breakdown</h3>
+            <div class="split-item">
+                <span>StarHouse (<%= invoiceBreakdown.roads.starhouse.percentage %>%)</span>
+                <span>$<%= invoiceBreakdown.roads.starhouse.amount.toFixed(2) %></span>
+            </div>
+            <div class="split-item">
+                <span>Hirsh (<%= invoiceBreakdown.roads.hirsh.percentage %>%)</span>
+                <span>$<%= invoiceBreakdown.roads.hirsh.amount.toFixed(2) %></span>
+            </div>
+            <div class="split-item">
+                <span>Dobson (<%= invoiceBreakdown.roads.dobson.percentage %>%)</span>
+                <span>$<%= invoiceBreakdown.roads.dobson.amount.toFixed(2) %></span>
+            </div>
+            <div class="split-item">
+                <span>Tresemer (<%= invoiceBreakdown.roads.tresemer.percentage %>%)</span>
+                <span>$<%= invoiceBreakdown.roads.tresemer.amount.toFixed(2) %></span>
+            </div>
+            <div class="split-item">
+                <span>Chien (<%= invoiceBreakdown.roads.chien.percentage %>%)</span>
+                <span>$<%= invoiceBreakdown.roads.chien.amount.toFixed(2) %></span>
+            </div>
+            <div class="split-item total">
+                <span><strong>Total Roads Invoice</strong></span>
+                <span><strong>$<%= invoiceBreakdown.roads.total.toFixed(2) %></strong></span>
+            </div>
+        </div>
+
+        <div class="invoice-section">
+            <h3>📄 Separate Invoices</h3>
+            <div class="split-item">
+                <span>Chien Plow (Direct)</span>
+                <span>$<%= invoiceBreakdown.separate.chienPlow.toFixed(2) %></span>
+            </div>
+            <div class="split-item">
+                <span>Lila Tresemer Farm (Direct)</span>
+                <span>$<%= invoiceBreakdown.separate.lilaTresemer.toFixed(2) %></span>
+            </div>
+        </div>
+
+        <div class="admin-actions">
+            <input type="month" id="invoiceMonth" class="form-input">
+            <button onclick="generateInvoices()" class="submit-btn">
+                📧 Generate Monthly Invoices
+            </button>
+            <div id="result" style="margin-top: 15px; display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('invoiceMonth').valueAsDate = new Date();
+        
+        function generateInvoices() {
+            const month = document.getElementById('invoiceMonth').value;
+            const result = document.getElementById('result');
+            
+            result.style.display = 'block';
+            result.innerHTML = '⏳ Generating invoices...';
+            
+            fetch('/admin/generate-invoices', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'month=' + encodeURIComponent(month)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    result.innerHTML = '✅ ' + data.message;
+                } else {
+                    result.innerHTML = '❌ Error: ' + data.message;
+                }
+            })
+            .catch(error => {
+                result.innerHTML = '❌ Error: ' + error.message;
+            });
+        }
+    </script>
+</body>
+</html>
